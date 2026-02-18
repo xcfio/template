@@ -14,6 +14,6 @@
         "start": "node index.js"
     },
     "devDependencies": {
-        "@types/node": "*"
+        "@types/node": "^25.2.3"
     }
 }

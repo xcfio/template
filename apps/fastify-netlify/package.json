@@ -10,9 +10,9 @@
         "test": "tsc --noEmit"
     },
     "dependencies": {
-        "fastify": "^5.4.0",
+        "fastify": "^5.7.4",
         "serverless-http": "^4.0.0",
-        "@netlify/functions": "^5.0.0"
+        "@netlify/functions": "^5.1.2"
     },
     "devDependencies": {
         "@types/node": "^25.2.3"
