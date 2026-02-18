@@ -1,0 +1,19 @@
+{
+    "name": "nodejs",
+    "version": "0.0.1",
+    "main": "index.js",
+    "type": "commonjs",
+    "author": "xcfio",
+    "license": "MIT",
+    "scripts": {
+        "fmt": "prettier --config=.prettierrc --write src",
+        "fmt:test": "prettier --config=.prettierrc --check src",
+        "test": "tsc --noEmit",
+        "dev": "tsx watch src/index.ts",
+        "build": "esbuild src/index.ts --bundle --outfile=index.js --platform=node --packages=external",
+        "start": "node index.js"
+    },
+    "devDependencies": {
+        "@types/node": "*"
+    }
+}
