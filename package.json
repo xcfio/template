@@ -1,5 +1,6 @@
 {
     "name": "template",
+    "description": "A collection of application templates for Fastify, Next.js, Node.js, React, and SolidJS",
     "author": "Omar Faruk (Aka. xcfio)",
     "homepage": "https://github.com/xcfio/template#readme",
     "license": "ISC",
