@@ -26,4 +26,5 @@ pnpm dev
 
 ## License
 
-ISC © [xcfio](https://github.com/xcfio)
+MIT © [xcfio](https://github.com/xcfio)
+
