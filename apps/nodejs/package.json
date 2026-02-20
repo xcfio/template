@@ -1,19 +1,25 @@
 {
     "name": "nodejs",
     "version": "0.0.1",
-    "main": "index.js",
     "type": "commonjs",
     "author": "xcfio",
     "license": "MIT",
+    "bugs": {
+        "email": "xcfio@proton.me",
+        "url": "https://github.com/xcfio/template"
+    },
     "scripts": {
+        "db": "drizzle-kit studio --port=4000",
+        "gen": "drizzle-kit generate",
+        "dev": "tsx watch --include src/**/* --no-warnings --env-file-if-exists=.env src/index.ts",
+        "start": "tsx --env-file-if-exists=.env src/index.ts",
+        "test": "tsc --noEmit",
         "fmt": "prettier --config=.prettierrc --write src",
         "fmt:test": "prettier --config=.prettierrc --check src",
-        "test": "tsc --noEmit",
-        "dev": "tsx watch src/index.ts",
-        "build": "esbuild src/index.ts --bundle --outfile=index.js --platform=node --packages=external",
-        "start": "node index.js"
+        "docker:build": "docker build --tag api .",
+        "docker:start": "docker run --detach --rm --publish 7200:7200 api"
     },
     "devDependencies": {
-        "@types/node": "^25.2.3"
+        "@types/node": "^25.3.0"
     }
 }

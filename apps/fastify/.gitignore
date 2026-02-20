@@ -42,6 +42,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+drizzle/
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -79,13 +80,10 @@ web_modules/
 .env.test.local
 .env.production.local
 .env.local
-drizzle
+config*.json
 pnpm-lock.yaml
-package-lock.json
-config.json
-log.json
-*.csv
 *.js
+*.csv
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

@@ -2,7 +2,12 @@
     "name": "fastify",
     "version": "0.0.1",
     "type": "commonjs",
-    "license": "ISC",
+    "author": "xcfio",
+    "license": "MIT",
+    "bugs": {
+        "email": "xcfio@proton.me",
+        "url": "https://github.com/xcfio/template"
+    },
     "scripts": {
         "db": "drizzle-kit studio --port=4000",
         "gen": "drizzle-kit generate",
