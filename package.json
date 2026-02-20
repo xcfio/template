@@ -3,7 +3,7 @@
     "description": "A collection of application templates for Fastify, Next.js, Node.js, React, and SolidJS",
     "author": "Omar Faruk (Aka. xcfio)",
     "homepage": "https://github.com/xcfio/template#readme",
-    "license": "ISC",
+    "license": "MIT",
     "scripts": {
         "build": "turbo run build",
         "dev": "turbo run dev",
@@ -29,3 +29,4 @@
         "node": ">=22"
     }
 }
+
