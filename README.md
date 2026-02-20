@@ -15,11 +15,11 @@ A collection of application templates for Fastify, Next.js, Node.js, React, and 
 
 ## Usage
 
-Clone the repository and navigate to the template you want to use:
+Scaffold a template into a new directory using [degit](https://github.com/Rich-Harris/degit):
 
 ```bash
-git clone https://github.com/xcfio/template
-cd template/apps/<template-name>
+pnpm dlx degit xcfio/template/apps/<template-name> my-app
+cd my-app
 pnpm install
 pnpm dev
 ```
@@ -27,4 +27,3 @@ pnpm dev
 ## License
 
 MIT © [xcfio](https://github.com/xcfio)
-
