@@ -20,6 +20,6 @@
         "docker:start": "docker run --detach --rm --publish 7200:7200 api"
     },
     "devDependencies": {
-        "@types/node": "^25.3.2"
+        "@types/node": "^25.3.4"
     }
 }
