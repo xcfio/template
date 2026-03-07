@@ -43,7 +43,7 @@ importers:
         version: 5.2.5
       '@fastify/type-provider-typebox':
         specifier: ^6.1.0
-        version: 6.1.0(typebox@1.1.4)
+        version: 6.1.0(typebox@1.1.6)
       drizzle-orm:
         specifier: ^0.45.1
         version: 0.45.1(postgres@3.4.8)
@@ -54,8 +54,8 @@ importers:
         specifier: ^3.4.8
         version: 3.4.8
       typebox:
-        specifier: ^1.1.4
-        version: 1.1.4
+        specifier: ^1.1.6
+        version: 1.1.6
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
@@ -2568,8 +2568,8 @@ packages:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
     engines: {node: '>= 0.8.0'}
 
-  typebox@1.1.4:
-    resolution: {integrity: sha512-KIrDJKNKWNCyS5QmlAhySJ9nN3MpJEmWjZ5D9kusLa1y4c073DzPFJz8cI863eOp9FtdXQBHjjJF+f7pzCxqYg==}
+  typebox@1.1.6:
+    resolution: {integrity: sha512-O2iWCF+RboQfDqr6n83eOq0dKCjVchMWklKgdwKFeR01MGTskILHYEFi9n3lQvfuua4CtvG/EJEIg3P8H9eBcw==}
 
   typescript-eslint@8.56.0:
     resolution: {integrity: sha512-c7toRLrotJ9oixgdW7liukZpsnq5CZ7PuKztubGYlNppuTqhIoWfhgHo/7EU0v06gS2l/x0i2NEFK1qMIf0rIg==}
@@ -3165,9 +3165,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@fastify/type-provider-typebox@6.1.0(typebox@1.1.4)':
+  '@fastify/type-provider-typebox@6.1.0(typebox@1.1.6)':
     dependencies:
-      typebox: 1.1.4
+      typebox: 1.1.6
 
   '@humanfs/core@0.19.1': {}
 
@@ -4728,7 +4728,7 @@ snapshots:
     dependencies:
       prelude-ls: 1.2.1
 
-  typebox@1.1.4: {}
+  typebox@1.1.6: {}
 
   typescript-eslint@8.56.0(eslint@10.0.0(jiti@2.6.1))(typescript@5.9.3):
     dependencies:
