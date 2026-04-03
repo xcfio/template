@@ -104,8 +104,7 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */,
-    "ignoreDeprecations": "6.0"
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "exclude": ["tsup.config.ts", "node_modules", "out"]
+  "exclude": ["tsup.config.ts", "out"]
 }

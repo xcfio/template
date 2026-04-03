@@ -1,3 +1,3 @@
-# nzap
+# cnpx
 
 This package is still in development...

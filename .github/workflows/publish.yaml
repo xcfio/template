@@ -29,9 +29,9 @@ jobs:
               run: pnpm install --no-frozen-lockfile
 
             - name: Build
-              run: pnpm exec turbo build --filter="nzap"
+              run: pnpm exec turbo build --filter="@cnpx/cnpx"
 
             - name: Publish packages
-              run: pnpm --filter "./nzap/nzap" publish --provenance --no-git-checks
+              run: pnpm --filter "./cnpx/core" publish --provenance --no-git-checks
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NODETOKEN}}

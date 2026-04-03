@@ -1,15 +1,16 @@
 {
-    "name": "nzap",
+    "name": "@cnpx/cnpx",
     "version": "0.0.1",
     "description": "",
+    "private": "false",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/nzap/nzap#readme",
+    "homepage": "https://github.com/xcfio/template/cnpx/cnpx#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
     "module": "./out/index.mjs",
     "bin": {
-        "nzap": "./out/index.js"
+        "cnpx": "./out/index.js"
     },
     "exports": {
         ".": {
@@ -28,6 +29,7 @@
         "test:ui": "vitest --ui"
     },
     "keywords": [
+        "cnpx",
         "create"
     ],
     "repository": {
