@@ -1,6 +1,6 @@
 {
     "name": "@cnpx/cnpx",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "A simple CLI to scaffold projects from remote templates",
     "author": "xcfio",
     "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
@@ -34,7 +34,7 @@
     },
     "bugs": {
         "url": "https://github.com/xcfio/template/issues",
-        "email": "omarfaruksnx@gmail.com"
+        "email": "omarfaruksxp@gmail.com"
     },
     "funding": {
         "type": "patreon",
@@ -51,7 +51,7 @@
     },
     "devDependencies": {
         "@types/degit": "^2.8.6",
-        "@types/node": "^25.0.0",
+        "@types/node": "^25.5.2",
         "tsup": "^8.5.1"
     }
 }
