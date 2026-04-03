@@ -1,15 +1,15 @@
 {
-    "name": "cnapx",
+    "name": "nzap",
     "version": "0.0.1",
     "description": "",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/cnapx/cnapx#readme",
+    "homepage": "https://github.com/xcfio/template/nzap/nzap#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
     "module": "./out/index.mjs",
     "bin": {
-        "cnapx": "./out/index.js"
+        "nzap": "./out/index.js"
     },
     "exports": {
         ".": {

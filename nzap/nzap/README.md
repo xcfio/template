@@ -1,3 +1,3 @@
-# cnapx
+# nzap
 
 This package is still in development...
