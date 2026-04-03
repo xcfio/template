@@ -1,4 +1,4 @@
 packages:
-    - "cnpx/*"
+    - "cnpy/*"
     - "backend/*"
     - "frontend/*"

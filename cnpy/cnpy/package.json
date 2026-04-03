@@ -1,15 +1,15 @@
 {
-    "name": "cnpx",
+    "name": "cnpy",
     "version": "0.0.1",
     "description": "",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/cnpx/cnpx#readme",
+    "homepage": "https://github.com/xcfio/template/cnpy/cnpy#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
     "module": "./out/index.mjs",
     "bin": {
-        "cnpx": "./out/index.js"
+        "cnpy": "./out/index.js"
     },
     "exports": {
         ".": {

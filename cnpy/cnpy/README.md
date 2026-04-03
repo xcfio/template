@@ -1,3 +1,3 @@
-# cnpx
+# cnpy
 
 This package is still in development...

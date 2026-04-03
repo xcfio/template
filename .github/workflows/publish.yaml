@@ -29,9 +29,9 @@ jobs:
               run: pnpm install --no-frozen-lockfile
 
             - name: Build
-              run: pnpm exec turbo build --filter="cnpx"
+              run: pnpm exec turbo build --filter="cnpy"
 
             - name: Publish packages
-              run: pnpm --filter "./cnpx/cnpx" publish --provenance --no-git-checks
+              run: pnpm --filter "./cnpy/cnpy" publish --provenance --no-git-checks
               env:
                   NODE_AUTH_TOKEN: ${{secrets.NODETOKEN}}
