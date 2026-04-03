@@ -23,6 +23,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: "latest"
+                  registry-url: https://registry.npmjs.org/
 
             - name: Setup PNPM
               uses: pnpm/action-setup@v4
@@ -41,33 +42,27 @@ jobs:
                   DEV_VERSION="${CURRENT_VERSION}-dev.$(date +'%Y%m%d%H%M%S')"
                   npm version "$DEV_VERSION" --no-git-tag-version
 
-            - name: Deprecate previous dev versions
+            - name: Deprecate old dev versions
               if: github.event_name == 'push'
               run: |
                   PACKAGE_NAME=$(node -p "require('./cnpx/cnpx/package.json').name")
-                  DEV_VERSIONS=$(npm view "$PACKAGE_NAME" versions --json | node -e "
-                    const versions = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-                    const devVersions = versions.filter(v => v.includes('-dev.'));
-                    devVersions.forEach(v => console.log(v));
-                  ")
-                  for VERSION in $DEV_VERSIONS; do
-                    echo "Deprecating $PACKAGE_NAME@$VERSION"
-                    npm deprecate "$PACKAGE_NAME@$VERSION" "Deprecated: superseded by a newer dev build" || true
+                  npm view "$PACKAGE_NAME" versions --json | jq -r '.[]' | grep -E 'dev\.[0-9]+' | while read -r old_version; do
+                    echo "Deprecating $PACKAGE_NAME@$old_version"
+                    npm deprecate "$PACKAGE_NAME@$old_version" "Deprecated - use latest dev version" || true
                   done
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NODETOKEN}}
 
-            - name: Deprecate previous dev versions on release
+            - name: Deprecate dev versions on release
               if: github.event_name == 'release'
               run: |
                   PACKAGE_NAME=$(node -p "require('./cnpx/cnpx/package.json').name")
-                  DEV_VERSIONS=$(npm view "$PACKAGE_NAME" versions --json | node -e "
-                    const versions = JSON.parse(require('fs').readFileSync('/dev/stdin','utf8'));
-                    const devVersions = versions.filter(v => v.includes('-dev.'));
-                    devVersions.forEach(v => console.log(v));
-                  ")
-                  for VERSION in $DEV_VERSIONS; do
-                    echo "Deprecating $PACKAGE_NAME@$VERSION"
-                    npm deprecate "$PACKAGE_NAME@$VERSION" "Deprecated: superseded by a stable release" || true
+                  npm view "$PACKAGE_NAME" versions --json | jq -r '.[]' | grep -E 'dev\.[0-9]+' | while read -r old_version; do
+                    echo "Deprecating $PACKAGE_NAME@$old_version"
+                    npm deprecate "$PACKAGE_NAME@$old_version" "Deprecated - superseded by stable release" || true
                   done
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NODETOKEN}}
 
             - name: Publish release
               if: github.event_name == 'release'
