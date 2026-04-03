@@ -49,9 +49,11 @@
     },
     "dependencies": {
         "@clack/prompts": "^1.2.0",
+        "colorette": "^2.0.20",
         "degit": "^2.8.4"
     },
     "devDependencies": {
+        "@types/degit": "^2.8.6",
         "@types/node": "^25.0.0",
         "@vitest/ui": "4.1.2",
         "tsup": "^8.5.1",
