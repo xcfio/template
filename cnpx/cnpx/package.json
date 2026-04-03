@@ -1,7 +1,7 @@
 {
     "name": "@cnpx/cnpx",
-    "version": "0.0.2",
-    "description": "",
+    "version": "0.0.3",
+    "description": "A simple CLI to scaffold projects from remote templates",
     "author": "xcfio",
     "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
     "type": "commonjs",

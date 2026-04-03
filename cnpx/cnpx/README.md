@@ -1,12 +1,5 @@
 # @cnpx/cnpx
 
-[![Discord](https://img.shields.io/discord/1211530334458617866?style=flat&logo=discord&logoColor=ffffff&color=5865f2)](https://discord.gg/FaCCaFM74Q)
-[![GitHub Action](https://github.com/xcfio/template/actions/workflows/test.yaml/badge.svg)](https://github.com/xcfio/template/actions)
-[![NPM Version](https://img.shields.io/npm/v/@cnpx/cnpx)](https://www.npmjs.com/package/@cnpx/cnpx)
-[![NPM Downloads](https://img.shields.io/npm/dy/@cnpx/cnpx)](https://www.npmjs.com/package/@cnpx/cnpx)
-[![NPM Unpacked Size](https://img.shields.io/npm/unpacked-size/@cnpx/cnpx)](https://www.npmjs.com/package/@cnpx/cnpx)
-[![NPM License](https://img.shields.io/npm/l/@cnpx/cnpx)](https://github.com/xcfio/template/blob/main/LICENSE)
-
 `@cnpx/cnpx` is an interactive CLI that scaffolds projects from the
 [`xcfio/template`](https://github.com/xcfio/template) repository.
 
@@ -99,8 +92,11 @@ Available scripts:
 
 - The CLI is currently fully interactive and does not expose command-line flags.
 - GitHub API rate limits can block category/template loading.
-- Template cloning currently uses `force: true`; existing files in the target
-  directory may be overwritten.
+
+## Support
+
+- Issues: [GitHub Issues](https://github.com/xcfio/template/issues)
+- Discord: [Discord Server](https://discord.gg/FaCCaFM74Q)
 
 ## License
 
