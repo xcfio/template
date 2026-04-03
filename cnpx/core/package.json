@@ -1,9 +1,9 @@
 {
     "name": "@cnpx/cnpx",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/cnpx/core#readme",
+    "homepage": "https://github.com/xcfio/template/tree/main/cnpx/core#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
@@ -46,6 +46,10 @@
     "publishConfig": {
         "access": "public",
         "tag": "latest"
+    },
+    "dependencies": {
+        "@clack/prompts": "^1.2.0",
+        "degit": "^2.8.4"
     },
     "devDependencies": {
         "@types/node": "^25.0.0",
