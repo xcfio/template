@@ -1,3 +1,4 @@
 packages:
+    - "cnpx/*"
     - "backend/*"
     - "frontend/*"

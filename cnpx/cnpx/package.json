@@ -1,0 +1,55 @@
+{
+    "name": "cnpx",
+    "version": "0.0.1",
+    "description": "",
+    "author": "xcfio",
+    "homepage": "https://github.com/xcfio/template/cnpx/cnpx#readme",
+    "type": "commonjs",
+    "license": "MIT",
+    "main": "./out/index.js",
+    "module": "./out/index.mjs",
+    "bin": {
+        "cnpx": "./out/index.js"
+    },
+    "exports": {
+        ".": {
+            "import": "./out/index.mjs",
+            "require": "./out/index.js"
+        }
+    },
+    "scripts": {
+        "fmt": "prettier --config=.prettierrc --write src/",
+        "lint": "prettier --config=.prettierrc --check src/",
+        "build": "tsup",
+        "dev": "tsup --watch",
+        "test": "(tsc --noEmit) && (vitest run)",
+        "test:run": "vitest run",
+        "test:watch": "vitest --watch",
+        "test:ui": "vitest --ui"
+    },
+    "keywords": [
+        "create"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xcfio/template"
+    },
+    "bugs": {
+        "url": "https://github.com/xcfio/template/issues",
+        "email": "omarfaruksnx@gmail.com"
+    },
+    "funding": {
+        "type": "patreon",
+        "url": "https://www.patreon.com/xcfio"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "devDependencies": {
+        "@types/node": "^25.0.0",
+        "@vitest/ui": "4.1.2",
+        "tsup": "^8.5.1",
+        "vitest": "^4.0.5"
+    }
+}
