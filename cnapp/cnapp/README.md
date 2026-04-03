@@ -1,3 +1,3 @@
-# cnpy
+# cnapp
 
 This package is still in development...
