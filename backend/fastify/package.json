@@ -32,7 +32,7 @@
         "fastify": "^5.8.2",
         "postgres": "^3.4.8",
         "typebox": "^1.1.6",
-        "typescript": "^5.9.3",
+        "typescript": "^6.0.2",
         "uuid": "^13.0.0"
     },
     "devDependencies": {
