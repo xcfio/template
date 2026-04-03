@@ -2,9 +2,8 @@
     "name": "@cnpx/cnpx",
     "version": "0.0.1",
     "description": "",
-    "private": false,
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/cnpx/cnpx#readme",
+    "homepage": "https://github.com/xcfio/template/cnpx/core#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
@@ -26,8 +25,7 @@
         "test": "(tsc --noEmit) && (vitest run)",
         "test:run": "vitest run",
         "test:watch": "vitest --watch",
-        "test:ui": "vitest --ui",
-        "publish": "pnpm publish --provenance --no-git-checks"
+        "test:ui": "vitest --ui"
     },
     "keywords": [
         "cnpx",
