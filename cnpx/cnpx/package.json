@@ -3,13 +3,13 @@
     "version": "0.0.2",
     "description": "",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/tree/main/cnpx/core#readme",
+    "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
     "module": "./out/index.mjs",
     "bin": {
-        "cnpx": "./out/index.js"
+        "cnpx": "./out/bin.js"
     },
     "exports": {
         ".": {
@@ -18,14 +18,11 @@
         }
     },
     "scripts": {
-        "fmt": "prettier --config=.prettierrc --write src/",
-        "lint": "prettier --config=.prettierrc --check src/",
+        "fmt": "prettier --config=.prettierrc --write src",
+        "lint": "prettier --config=.prettierrc --check src",
         "build": "tsup",
         "dev": "tsup --watch",
-        "test": "(tsc --noEmit) && (vitest run)",
-        "test:run": "vitest run",
-        "test:watch": "vitest --watch",
-        "test:ui": "vitest --ui"
+        "test": "tsc --noEmit"
     },
     "keywords": [
         "cnpx",
@@ -55,8 +52,6 @@
     "devDependencies": {
         "@types/degit": "^2.8.6",
         "@types/node": "^25.0.0",
-        "@vitest/ui": "4.1.2",
-        "tsup": "^8.5.1",
-        "vitest": "^4.0.5"
+        "tsup": "^8.5.1"
     }
 }

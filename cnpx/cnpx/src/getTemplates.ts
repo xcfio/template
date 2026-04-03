@@ -1,0 +1,27 @@
+import { GithubAPIResponse, FilteredGithubResponse } from "./type"
+import { spinner } from "@clack/prompts"
+import { get } from "./fetch"
+
+export async function getTemplates(x: string): Promise<FilteredGithubResponse> {
+    const Spinner = spinner()
+
+    Spinner.start("Fetching Templates")
+    const { data } = await get<GithubAPIResponse>(`https://api.github.com/repos/xcfio/template/contents/${x}?ref=main`)
+
+    if ("message" in data) {
+        if (data.message.startsWith("API rate limit exceeded")) {
+            Spinner.error("API rate limit exceeded. Please try again later.")
+        } else {
+            Spinner.error("An unknown error occurred")
+            console.log(data.message)
+            console.trace()
+        }
+        process.exit(1)
+    }
+
+    const filtered = data.filter((x) => x.type === "dir")
+    const shorted = filtered.map((x) => ({ name: x.name, url: x.url }))
+
+    Spinner.clear()
+    return shorted
+}
