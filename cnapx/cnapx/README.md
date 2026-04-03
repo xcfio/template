@@ -1,3 +1,3 @@
-# cnapp
+# cnapx
 
 This package is still in development...

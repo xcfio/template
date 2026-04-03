@@ -1,4 +1,4 @@
 packages:
-    - "cnapp/*"
+    - "cnapx/*"
     - "backend/*"
     - "frontend/*"

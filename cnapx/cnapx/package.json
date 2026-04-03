@@ -1,15 +1,15 @@
 {
-    "name": "cnapp",
+    "name": "cnapx",
     "version": "0.0.1",
     "description": "",
     "author": "xcfio",
-    "homepage": "https://github.com/xcfio/template/cnapp/cnapp#readme",
+    "homepage": "https://github.com/xcfio/template/cnapx/cnapx#readme",
     "type": "commonjs",
     "license": "MIT",
     "main": "./out/index.js",
     "module": "./out/index.mjs",
     "bin": {
-        "cnapp": "./out/index.js"
+        "cnapx": "./out/index.js"
     },
     "exports": {
         ".": {
