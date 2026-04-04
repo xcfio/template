@@ -1,7 +1,7 @@
 {
     "name": "@cnpx/cnpx",
     "version": "0.0.4",
-    "description": "A simple CLI to scaffold projects from remote templates",
+    "description": "An interactive CLI tool for creating new projects from curated templates hosted on GitHub. Pick a category, pick a template, and get coding.",
     "author": "xcfio",
     "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
     "type": "commonjs",
@@ -18,11 +18,11 @@
         }
     },
     "scripts": {
-        "fmt": "prettier --config=.prettierrc --write src",
         "lint": "prettier --config=.prettierrc --check src",
-        "build": "tsup",
+        "fmt": "prettier --config=.prettierrc --write src",
+        "test": "tsc --noEmit",
         "dev": "tsup --watch",
-        "test": "tsc --noEmit"
+        "build": "tsup"
     },
     "keywords": [
         "cnpx",
@@ -36,13 +36,12 @@
         "url": "https://github.com/xcfio/template/issues",
         "email": "omarfaruksxp@gmail.com"
     },
-    "funding": {
-        "type": "patreon",
-        "url": "https://www.patreon.com/xcfio"
-    },
     "publishConfig": {
         "access": "public",
         "tag": "latest"
+    },
+    "engines": {
+        "node": ">=22.5"
     },
     "dependencies": {
         "@clack/prompts": "^1.2.0",

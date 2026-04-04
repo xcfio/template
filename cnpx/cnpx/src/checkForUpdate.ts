@@ -1,6 +1,6 @@
 import { getPackageManager } from "./getPackageManager"
 import { name, version } from "../package.json"
-import { note } from "@clack/prompts"
+import { note, spinner } from "@clack/prompts"
 import { bold } from "colorette"
 import { get } from "./fetch"
 
@@ -76,6 +76,8 @@ function compareSemver(left: string, right: string): number {
 }
 
 export async function checkForUpdate() {
+    const Spinner = spinner()
+    Spinner.start("Checking for updates")
     try {
         const { data } = await get<{ version: string }>(`https://registry.npmjs.org/${name}/latest`)
         if (compareSemver(data.version, version) <= 0) return
@@ -84,5 +86,8 @@ export async function checkForUpdate() {
             `Current: ${bold(version)} → Latest: ${bold(data.version)}\nRun: ${getPackageManager()} i -g ${name}`,
             "Update available"
         )
-    } catch {}
+    } catch {
+    } finally {
+        Spinner.clear()
+    }
 }
