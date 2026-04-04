@@ -1,17 +1,11 @@
 import { getPackageManager } from "./getPackageManager"
 import { name, version } from "../package.json"
 import { note, spinner } from "@clack/prompts"
+import { ParsedSemver } from "./type"
 import { bold } from "colorette"
 import { get } from "./fetch"
 
-type ParsedSemver = {
-    major: number
-    minor: number
-    patch: number
-    pre: string[]
-}
-
-function parseSemver(value: string): ParsedSemver | null {
+export function parseSemver(value: string): ParsedSemver | null {
     const match = /^v?(\d+)\.(\d+)\.(\d+)(?:-([0-9A-Za-z.-]+))?$/.exec(value)
     if (!match) return null
 
@@ -23,7 +17,7 @@ function parseSemver(value: string): ParsedSemver | null {
     }
 }
 
-function compareIdentifier(left: string, right: string): number {
+export function compareIdentifier(left: string, right: string): number {
     const leftNumeric = /^\d+$/.test(left)
     const rightNumeric = /^\d+$/.test(right)
 
@@ -43,7 +37,7 @@ function compareIdentifier(left: string, right: string): number {
     return 0
 }
 
-function compareSemver(left: string, right: string): number {
+export function compareSemver(left: string, right: string): number {
     const a = parseSemver(left)
     const b = parseSemver(right)
 

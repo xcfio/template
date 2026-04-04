@@ -1,6 +1,6 @@
 import { execSync } from "node:child_process"
 
-let packageManager: "npm" | "yarn" | "pnpm"
+export let packageManager: "npm" | "yarn" | "pnpm"
 
 export function getPackageManager(): "npm" | "yarn" | "pnpm" {
     if (packageManager) return packageManager
