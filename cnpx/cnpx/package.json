@@ -41,7 +41,7 @@
         "tag": "latest"
     },
     "engines": {
-        "node": ">=22.5"
+        "node": ">=22.12"
     },
     "dependencies": {
         "@clack/prompts": "^1.2.0",

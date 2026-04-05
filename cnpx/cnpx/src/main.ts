@@ -28,14 +28,6 @@ export async function main() {
         }
     })
 
-    const [major, minor] = process.versions.node.split(".").map((x) => parseInt(x))
-    if (major < 22 || (major === 22 && minor < 5)) {
-        note(
-            "Node.js v22.5.0 or higher is required. Versions below this will stop working from the next release. Please update your Node.js.",
-            `${yellow("Warning")}`
-        )
-    }
-
     if (flags.offline === true) return await offlineRunner({ ...flags })
 
     const projectName = await getProjectName(flags.name)
