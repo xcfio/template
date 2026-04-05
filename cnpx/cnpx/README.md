@@ -10,6 +10,7 @@ An interactive CLI tool for creating new projects from curated templates hosted 
 - [Quick Start](#quick-start)
 - [CLI Flags](#cli-flags)
 - [Interactive Flow](#interactive-flow)
+- [Offline Mode](#offline-mode)
 - [Templates](#templates)
 - [Package Manager Detection](#package-manager-detection)
 - [Auto-Update Check](#auto-update-check)
@@ -74,13 +75,14 @@ cnpx --name my-app --template backend/fastify
 
 All flags are optional. Any omitted value is collected interactively.
 
-| Flag               | Type      | Description                                                                                                                                   |
-| ------------------ | --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| `-n`, `--name`     | `string`  | Output directory / project name. Validated against filesystem rules — see [Validation](#validation).                                          |
-| `-c`, `--category` | `string`  | Template category (top-level directory in the template repo). Skips the category selection prompt.                                            |
-| `-t`, `--template` | `string`  | Template name. Accepts bare name (`starter`) or `category/template` slash syntax. Slash syntax also sets `--category`.                        |
-| `-f`, `--force`    | `boolean` | Overwrite a non-empty target directory without prompting. Skips both the overwrite confirmation and the final "create project?" confirmation. |
-| `-h`, `--help`     | `boolean` | Print the help message and exit. Also triggered by passing `help` as a bare argument.                                                         |
+| Flag         | Short | Type      | Description                                                                                                                                   |
+| ------------ | ----- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--name`     | `-n`  | `string`  | Output directory / project name. Validated against filesystem rules — see [Validation](#validation).                                          |
+| `--category` | `-c`  | `string`  | Template category (top-level directory in the template repo). Skips the category selection prompt.                                            |
+| `--template` | `-t`  | `string`  | Template name. Accepts bare name (`fastify`) or `category/template` slash syntax. Slash syntax also sets `--category`.                        |
+| `--force`    | `-f`  | `boolean` | Overwrite a non-empty target directory without prompting. Skips both the overwrite confirmation and the final "create project?" confirmation. |
+| `--offline`  | `-o`  | `boolean` | Run in offline mode using locally cached templates. Requires `--template` in `category/template` format.                                      |
+| `--help`     | `-h`  | `boolean` | Print the help message and exit. Also triggered by passing `help` as a bare argument.                                                         |
 
 ### Examples
 
@@ -99,6 +101,9 @@ cnpx --category backend --template fastify
 
 # All flags — no prompts at all
 cnpx -n my-app -t backend/fastify -f
+
+# Offline mode — uses cached templates, no network required
+cnpx --offline -n my-app -t backend/fastify
 
 # Print help
 cnpx --help
@@ -134,6 +139,29 @@ update check → project name → overwrite? → category → template → confi
 
 ---
 
+## Offline Mode
+
+Pass `--offline` (or `-o`) to skip all network requests and clone directly from degit's local cache. This is useful in environments without internet access or when you want faster re-scaffolding of a template you've cloned before.
+
+```bash
+cnpx --offline --name my-app --template backend/fastify
+```
+
+**Requirements for offline mode:**
+
+- `--template` must be provided in `category/template` slash format — bare template names are not accepted.
+- The template must have been previously cloned at least once so degit has a local cache entry.
+
+If either condition is not met, the CLI exits with an error:
+
+```
+✖ Offline mode requires a specific template.
+```
+
+> Templates are cached by degit automatically on first clone. No manual setup is needed.
+
+---
+
 ## Templates
 
 All templates live in the [xcfio/template](https://github.com/xcfio/template) GitHub repository. The directory structure is:
@@ -155,7 +183,7 @@ The following top-level directories are always excluded from the category list:
 
 Templates are cloned using **degit** with `cache: true`, so repeated clones of the same template are served from a local cache instead of re-downloading from GitHub.
 
-> **API rate limits:** Template lists are fetched live from the GitHub Contents API. If you encounter `API rate limit exceeded`, wait a few minutes and try again. Authenticated requests are not currently supported.
+> **API rate limits:** Template lists are fetched live from the GitHub Contents API. If you encounter `API rate limit exceeded`, wait a few minutes and try again. Use `--offline` mode to bypass this entirely when you already have the template cached.
 
 ---
 
@@ -195,7 +223,7 @@ Versions are compared with a custom semver parser that handles pre-release ident
 └──────────────────────────────────╯
 ```
 
-The check is non-blocking — any error (network failure, rate limit) is silently swallowed so it never interrupts the main flow.
+The check is non-blocking — any error (network failure, rate limit) is silently swallowed so it never interrupts the main flow. In offline mode the update check is skipped entirely.
 
 ---
 
@@ -226,10 +254,10 @@ After name validation, the resolved path is checked:
 
 ### Exit codes
 
-| Code | Meaning                                                                       |
-| ---- | ----------------------------------------------------------------------------- |
-| `0`  | Success or user-cancelled                                                     |
-| `1`  | Validation error, target-is-file error, API rate limit, or uncaught exception |
+| Code | Meaning                                                                                                 |
+| ---- | ------------------------------------------------------------------------------------------------------- |
+| `0`  | Success or user-cancelled                                                                               |
+| `1`  | Validation error, target-is-file error, missing offline template, API rate limit, or uncaught exception |
 
 ---
 
@@ -263,7 +291,11 @@ All runtime dependencies are pure-JS and work without native addons.
 src/
 ├── bin.ts                  # Entry point — wires showHelp + main
 ├── main.ts                 # Orchestrates the full interactive flow
+├── offlineRunner.ts        # Offline mode flow (--offline flag)
 ├── clone.ts                # Wraps degit clone with a spinner
+├── confirmProject.ts       # Extracted final confirmation prompt logic
+├── getProjectName.ts       # Extracted project name prompt + validation
+├── parseTemplate.ts        # Parses --category / --template flags into [cat, tpl]
 ├── checkForUpdate.ts       # npm registry version check + semver comparison
 ├── getCategories.ts        # GitHub API → category list
 ├── getTemplates.ts         # GitHub API → template list for a category
@@ -318,7 +350,6 @@ The package is published publicly to npm under the `latest` tag:
 | npm package       | https://www.npmjs.com/package/@cnpx/cnpx                     |
 | Homepage          | https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme |
 | Bug reports       | https://github.com/xcfio/template/issues                     |
-| Bug report email  | omarfaruksxp@gmail.com                                       |
 
 ### Discord
 
