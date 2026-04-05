@@ -1,6 +1,6 @@
 {
     "name": "@cnpx/cnpx",
-    "version": "0.0.5",
+    "version": "0.0.4",
     "description": "An interactive CLI tool for creating new projects from curated templates hosted on GitHub. Pick a category, pick a template, and get coding.",
     "author": "xcfio",
     "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
