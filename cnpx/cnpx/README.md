@@ -65,7 +65,7 @@ cnpx
 Or skip straight to a known template with flags:
 
 ```bash
-cnpx --name my-app --template nextjs/starter
+cnpx --name my-app --template backend/fastify
 ```
 
 ---
@@ -92,13 +92,13 @@ cnpx
 cnpx --name my-project
 
 # Slash syntax — sets both category and template
-cnpx -t nextjs/starter
+cnpx -t backend/fastify
 
 # Category and template as separate flags
-cnpx --category nextjs --template starter
+cnpx --category backend --template fastify
 
 # All flags — no prompts at all
-cnpx -n my-app -t nextjs/starter -f
+cnpx -n my-app -t backend/fastify -f
 
 # Print help
 cnpx --help

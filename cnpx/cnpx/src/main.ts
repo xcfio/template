@@ -1,10 +1,11 @@
 import { intro, outro, confirm, select, isCancel, cancel, text, note } from "@clack/prompts"
 import { isValidDirectoryName } from "./isValidDirectoryName"
 import { getPackageManager } from "./getPackageManager"
-import { blue, bold, green, yellow } from "colorette"
+import { blue, bold, gray, green } from "colorette"
 import { checkForUpdate } from "./checkForUpdate"
 import { isInvalidPath } from "./isInvalidPath"
 import { getCategories } from "./getCategories"
+import { offlineRunner } from "./offlineRunner"
 import { getTemplates } from "./getTemplates"
 import { parseArgs } from "node:util"
 import { clone } from "./clone"
@@ -23,10 +24,11 @@ export async function main() {
             template: { type: "string", short: "t" },
             name: { type: "string", short: "n" },
             force: { type: "boolean", short: "f" },
-            help: { type: "boolean", short: "h" }
+            offline: { type: "boolean", short: "o" }
         }
     })
 
+    if (flags.offline === true) return await offlineRunner({ ...flags })
     if (typeof flags.name === "string") {
         const isValidName = isValidDirectoryName(flags.name)
         if (typeof isValidName === "string") {
@@ -133,5 +135,7 @@ export async function main() {
 
     await clone(name, `${template.join("/")}`, force)
     note(`cd ${name}\n${getPackageManager()} install\nnode --run dev`, "To get started, run:")
-    outro(`Thanks for using cnpx! ⭐ Give a ${yellow("star")} on GitHub: https://github.com/xcfio/template`)
+    outro(
+        `Thanks for using cnpx! If you have any issues or feedback, please open an issue at ${gray("https://github.com/xcfio/template/issues")}`
+    )
 }
