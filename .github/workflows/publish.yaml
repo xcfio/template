@@ -31,7 +31,11 @@ jobs:
             - name: Check for cnpx changes
               id: cnpx-changes
               run: |
-                  git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^cnpx/cnpx/' && echo "changed=true" >> $GITHUB_OUTPUT || echo "changed=false" >> $GITHUB_OUTPUT
+                  if git rev-parse --verify ${{ github.event.before }} > /dev/null 2>&1; then
+                    git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^cnpx/cnpx/' && echo "changed=true" >> $GITHUB_OUTPUT || echo "changed=false" >> $GITHUB_OUTPUT
+                  else
+                    echo "changed=true" >> $GITHUB_OUTPUT
+                  fi
 
             - name: Install dependencies
               if: github.event_name == 'release' || (github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true')
