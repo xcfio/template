@@ -41,7 +41,6 @@ export function compareSemver(left: string, right: string): number {
     const a = parseSemver(left)
     const b = parseSemver(right)
 
-    // Fall back to numeric-aware string compare for non-semver inputs.
     if (!a || !b) {
         return left.localeCompare(right, undefined, { numeric: true, sensitivity: "base" })
     }
@@ -74,14 +73,14 @@ export async function checkForUpdate() {
     Spinner.start("Checking for updates")
     try {
         const { data } = await get<{ version: string }>(`https://registry.npmjs.org/${name}/latest`)
-        if (compareSemver(data.version, version) <= 0) return
+        Spinner.clear()
 
+        if (compareSemver(data.version, version) <= 0) return
         note(
             `Current: ${bold(version)} → Latest: ${bold(data.version)}\nRun: ${getPackageManager()} i -g ${name}`,
             "Update available"
         )
     } catch {
-    } finally {
-        Spinner.clear()
+        if (!Spinner.isCancelled) Spinner.clear()
     }
 }

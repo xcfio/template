@@ -189,7 +189,7 @@ Versions are compared with a custom semver parser that handles pre-release ident
 ```
 ┌  Update available ───────────────╮
 │                                  │
-│  Current: 0.0.4 → Latest: 0.0.5  │
+│  Current: 0.0.5 → Latest: 0.0.6  │
 │  Run: pnpm i -g @cnpx/cnpx       │
 │                                  │
 └──────────────────────────────────╯

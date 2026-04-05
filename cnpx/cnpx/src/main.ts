@@ -1,20 +1,20 @@
-import { intro, outro, confirm, select, isCancel, cancel, text, note } from "@clack/prompts"
-import { isValidDirectoryName } from "./isValidDirectoryName"
+import { intro, outro, select, isCancel, cancel, note, confirm } from "@clack/prompts"
 import { getPackageManager } from "./getPackageManager"
-import { blue, bold, gray, green } from "colorette"
+import { confirmProject } from "./confirmProject"
+import { getProjectName } from "./getProjectName"
 import { checkForUpdate } from "./checkForUpdate"
-import { isInvalidPath } from "./isInvalidPath"
 import { getCategories } from "./getCategories"
+import { isInvalidPath } from "./isInvalidPath"
+import { parseTemplate } from "./parseTemplate"
 import { offlineRunner } from "./offlineRunner"
 import { getTemplates } from "./getTemplates"
+import { blue, gray, green } from "colorette"
 import { parseArgs } from "node:util"
 import { clone } from "./clone"
 import { join } from "node:path"
 
 export async function main() {
     intro(blue("cnpx - Create a new project from a template"))
-
-    const template: [string, string] = ["", ""]
 
     const { values: flags } = parseArgs({
         args: process.argv.slice(2),
@@ -29,55 +29,22 @@ export async function main() {
     })
 
     if (flags.offline === true) return await offlineRunner({ ...flags })
-    if (typeof flags.name === "string") {
-        const isValidName = isValidDirectoryName(flags.name)
-        if (typeof isValidName === "string") {
-            cancel(isValidName)
-            return process.exit(1)
-        }
-    }
 
-    if (typeof flags.category === "string") template[0] = flags.category
-    if (typeof flags.template === "string") {
-        if (flags.template.includes("/")) {
-            const [category, templateName] = flags.template.split("/")
+    const projectName = await getProjectName(flags.name)
+    if (!projectName) return process.exit(0)
 
-            template[0] = category
-            template[1] = templateName
-        } else {
-            template[1] = flags.template
-        }
-    }
+    let template = parseTemplate(flags.category, flags.template)
 
     await checkForUpdate()
 
-    const name =
-        typeof flags.name === "string"
-            ? flags.name
-            : await text({
-                  message: "Project Name",
-                  placeholder: "my-project",
-                  defaultValue: "my-project",
-                  validate: (value) => {
-                      if (!value) return
-                      const result = isValidDirectoryName(value)
-                      if (typeof result === "string") return new Error(result)
-                  }
-              })
-
-    if (isCancel(name)) {
-        cancel("Operation cancelled")
-        return process.exit(0)
-    }
-
-    const invalid = isInvalidPath(join(process.cwd(), name))
+    const invalid = isInvalidPath(join(process.cwd(), projectName))
 
     let force = typeof flags.force === "boolean" ? flags.force : false
     if (invalid !== null) {
         if (invalid) {
             if (flags.force !== true) {
                 const overwrite = await confirm({
-                    message: `Directory ${green(name)} already exists. Do you want to overwrite it?`
+                    message: `Directory ${green(projectName)} already exists. Do you want to overwrite it?`
                 })
 
                 if (isCancel(overwrite) || !overwrite) {
@@ -85,9 +52,8 @@ export async function main() {
                     return process.exit(0)
                 }
             }
-            force = true
         } else {
-            cancel(`${green(name)} is a file. Please choose a different project name.`)
+            cancel(`${projectName} is a file. Please choose a different project name.`)
             return process.exit(1)
         }
     }
@@ -122,19 +88,12 @@ export async function main() {
         template[1] = projectTemplate
     }
 
-    if (flags.force !== true) {
-        const confirmProject = await confirm({
-            message: `Create project with name: ${bold(name)}, category: ${bold(template[0])}, template: ${bold(template[1])}?`
-        })
-
-        if (isCancel(confirmProject) || !confirmProject) {
-            cancel("Operation cancelled")
-            return process.exit(0)
-        }
+    if (!(await confirmProject(projectName, template[0], template[1], force))) {
+        return process.exit(0)
     }
 
-    await clone(name, `${template.join("/")}`, force)
-    note(`cd ${name}\n${getPackageManager()} install\nnode --run dev`, "To get started, run:")
+    await clone(projectName, `${template.join("/")}`, force)
+    note(`cd ${projectName}\n${getPackageManager()} install\nnode --run dev`, "To get started, run:")
     outro(
         `Thanks for using cnpx! If you have any issues or feedback, please open an issue at ${gray("https://github.com/xcfio/template/issues")}`
     )
