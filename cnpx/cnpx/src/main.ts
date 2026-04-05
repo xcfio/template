@@ -8,7 +8,7 @@ import { isInvalidPath } from "./isInvalidPath"
 import { parseTemplate } from "./parseTemplate"
 import { offlineRunner } from "./offlineRunner"
 import { getTemplates } from "./getTemplates"
-import { blue, gray, green } from "colorette"
+import { blue, gray, green, yellow } from "colorette"
 import { parseArgs } from "node:util"
 import { clone } from "./clone"
 import { join } from "node:path"
@@ -27,6 +27,14 @@ export async function main() {
             offline: { type: "boolean", short: "o" }
         }
     })
+
+    const [major, minor] = process.versions.node.split(".").map((x) => parseInt(x))
+    if (major < 22 || (major === 22 && minor < 5) || true) {
+        note(
+            "Node.js v22.5.0 or higher is required. Versions below this will stop working from the next release. Please update your Node.js.",
+            `${yellow("Warning")}`
+        )
+    }
 
     if (flags.offline === true) return await offlineRunner({ ...flags })
 
