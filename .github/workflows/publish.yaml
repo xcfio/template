@@ -28,14 +28,21 @@ jobs:
             - name: Setup PNPM
               uses: pnpm/action-setup@v4
 
+            - name: Check for cnpx changes
+              id: cnpx-changes
+              run: |
+                  git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^cnpx/cnpx/' && echo "changed=true" >> $GITHUB_OUTPUT || echo "changed=false" >> $GITHUB_OUTPUT
+
             - name: Install dependencies
+              if: github.event_name == 'release' || (github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true')
               run: pnpm install --no-frozen-lockfile
 
             - name: Build
+              if: github.event_name == 'release' || (github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true')
               run: pnpm exec turbo build --filter="@cnpx/cnpx"
 
             - name: Generate dev version
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true'
               run: |
                   cd cnpx/cnpx
                   CURRENT_VERSION=$(node -p "require('./package.json').version")
@@ -43,7 +50,7 @@ jobs:
                   npm version "$DEV_VERSION" --no-git-tag-version
 
             - name: Deprecate old dev versions
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true'
               run: |
                   PACKAGE_NAME=$(node -p "require('./cnpx/cnpx/package.json').name")
                   npm view "$PACKAGE_NAME" versions --json | jq -r '.[]' | grep -E 'dev\.[0-9]+' | while read -r old_version; do
@@ -69,5 +76,5 @@ jobs:
               run: pnpm --filter "./cnpx/cnpx" publish --provenance --access public --no-git-checks
 
             - name: Publish dev
-              if: github.event_name == 'push'
+              if: github.event_name == 'push' && steps.cnpx-changes.outputs.changed == 'true'
               run: pnpm --filter "./cnpx/cnpx" publish --provenance --access public --no-git-checks --tag dev
