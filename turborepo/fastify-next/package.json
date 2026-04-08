@@ -1,0 +1,26 @@
+{
+    "name": "fastify-next",
+    "homepage": "https://github.com/xcfio/template/tree/main/turborepo/fastify-next#readme",
+    "license": "MIT",
+    "scripts": {
+        "build": "turbo run build",
+        "dev": "turbo run dev",
+        "lint": "turbo run lint",
+        "fmt": "prettier --config=.prettierrc --write .",
+        "test": "turbo run test",
+        "clean": "powershell -Command \"Get-ChildItem -Path . -Filter node_modules -Recurse -Directory | Remove-Item -Recurse -Force\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xcfio/template"
+    },
+    "devDependencies": {
+        "prettier": "^3.8.1",
+        "turbo": "^2.9.3",
+        "typescript": "6.0.2"
+    },
+    "packageManager": "pnpm@10.33.0",
+    "engines": {
+        "node": ">=22"
+    }
+}
