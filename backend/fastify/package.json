@@ -29,9 +29,9 @@
         "@fastify/swagger-ui": "^5.2.6",
         "@fastify/type-provider-typebox": "^6.1.0",
         "drizzle-orm": "^0.45.2",
-        "fastify": "^5.8.4",
+        "fastify": "^5.8.5",
         "postgres": "^3.4.9",
-        "typebox": "^1.1.26",
+        "typebox": "^1.1.33",
         "typescript": "^6.0.3",
         "uuid": "^14.0.0"
     },
