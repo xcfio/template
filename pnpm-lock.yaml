@@ -97,12 +97,21 @@ importers:
       '@clack/prompts':
         specifier: ^1.2.0
         version: 1.2.0
+      citty:
+        specifier: ^0.2.2
+        version: 0.2.2
       colorette:
         specifier: ^2.0.20
         version: 2.0.20
       degit:
         specifier: ^2.8.4
         version: 2.8.4
+      semver:
+        specifier: ^7.7.4
+        version: 7.7.4
+      sqlite-cache:
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@types/degit':
         specifier: ^2.8.6
@@ -110,6 +119,9 @@ importers:
       '@types/node':
         specifier: ^25.6.0
         version: 25.6.0
+      '@types/semver':
+        specifier: ^7.7.1
+        version: 7.7.1
       tsup:
         specifier: ^8.5.1
         version: 8.5.1(jiti@2.6.1)(postcss@8.5.10)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.8.3)
@@ -2205,6 +2217,9 @@ packages:
   '@types/resolve@1.20.2':
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
 
+  '@types/semver@7.7.1':
+    resolution: {integrity: sha512-FmgJfu+MOcQ370SD0ev7EI8TlCAfKYU+B4m5T3yXc1CiRN94g/SZPtsCkk506aUDtlMnFZvasDwHHUcZUEaYuA==}
+
   '@types/unist@3.0.3':
     resolution: {integrity: sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q==}
 
@@ -2480,6 +2495,9 @@ packages:
 
   citty@0.2.1:
     resolution: {integrity: sha512-kEV95lFBhQgtogAPlQfJJ0WGVSokvLr/UEoFPiKKOXF7pl98HfUVUD0ejsuTCld/9xH9vogSywZ5KqHzXrZpqg==}
+
+  citty@0.2.2:
+    resolution: {integrity: sha512-+6vJA3L98yv+IdfKGZHBNiGW5KHn22e/JwID0Strsz8h4S/csAu/OuICwxrg44k5MRiZHWIo8XXuJgQTriRP4w==}
 
   client-only@0.0.1:
     resolution: {integrity: sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==}
@@ -3506,6 +3524,10 @@ packages:
   node-releases@2.0.37:
     resolution: {integrity: sha512-1h5gKZCF+pO/o3Iqt5Jp7wc9rH3eJJ0+nh/CIoiRwjRxde/hAHyLPXYN4V3CqKAbiZPSeJFSWHmJsbkicta0Eg==}
 
+  node-sqlite-map@0.0.1:
+    resolution: {integrity: sha512-N3gXR5/bM0cXjKdkWK/lszqtaMGsOFhrrdUUm0cBaHXYHl2rWsA3q9eaNN5JSgCF4HSZc/4niViRMZIXPn93iw==}
+    engines: {node: '>=22.5'}
+
   nopt@8.1.0:
     resolution: {integrity: sha512-ieGu42u/Qsa4TFktmaKEwM6MQH0pOWnaB3htzh0JRtx84+Mebc0cbZYN5bC+6WTZ4+77xrL9Pn5m7CV6VIkV7A==}
     engines: {node: ^18.17.0 || >=20.5.0}
@@ -3968,6 +3990,10 @@ packages:
   split2@4.2.0:
     resolution: {integrity: sha512-UcjcJOWknrNkF6PLX83qcHM6KHgVKNkV62Y8a5uYDVv9ydGQVwAHMKqHdJje1VTWpljG0WYpCDhrCdAOYH4TWg==}
     engines: {node: '>= 10.x'}
+
+  sqlite-cache@0.0.3:
+    resolution: {integrity: sha512-y4Hk3+WoWyH+CKGlfMNcC4rBje17FpIngfnTQCiyoWJIA/Y5dijFcqw616NGP3nNTzUpB2O3+5SFV11I6iAXbQ==}
+    engines: {node: '>=22.5'}
 
   srvx@0.9.8:
     resolution: {integrity: sha512-RZaxTKJEE/14HYn8COLuUOJAt0U55N9l1Xf6jj+T0GoA01EUH1Xz5JtSUOI+EHn+AEgPCVn7gk6jHJffrr06fQ==}
@@ -6073,6 +6099,8 @@ snapshots:
 
   '@types/resolve@1.20.2': {}
 
+  '@types/semver@7.7.1': {}
+
   '@types/unist@3.0.3': {}
 
   '@ungap/structured-clone@1.3.0': {}
@@ -6342,6 +6370,8 @@ snapshots:
       consola: 3.4.2
 
   citty@0.2.1: {}
+
+  citty@0.2.2: {}
 
   client-only@0.0.1: {}
 
@@ -7386,6 +7416,8 @@ snapshots:
 
   node-releases@2.0.37: {}
 
+  node-sqlite-map@0.0.1: {}
+
   nopt@8.1.0:
     dependencies:
       abbrev: 3.0.1
@@ -7910,6 +7942,10 @@ snapshots:
   space-separated-tokens@2.0.2: {}
 
   split2@4.2.0: {}
+
+  sqlite-cache@0.0.3:
+    dependencies:
+      node-sqlite-map: 0.0.1
 
   srvx@0.9.8: {}
 

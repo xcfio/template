@@ -1,10 +1,3 @@
-export type ParsedSemver = {
-    major: number
-    minor: number
-    patch: number
-    pre: string[]
-}
-
 export type FilteredGithubResponse = Array<{
     name: string
     url: string

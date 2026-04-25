@@ -1,4 +1,5 @@
 export { version } from "../package.json"
+export * from "./cache"
 export * from "./checkForUpdate"
 export * from "./clone"
 export * from "./confirmProject"

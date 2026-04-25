@@ -1,6 +1,6 @@
 {
     "name": "@cnpx/cnpx",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "description": "An interactive CLI tool for creating new projects from curated templates hosted on GitHub. Pick a category, pick a template, and get coding.",
     "author": "xcfio",
     "homepage": "https://github.com/xcfio/template/tree/main/cnpx/cnpx#readme",
@@ -45,12 +45,16 @@
     },
     "dependencies": {
         "@clack/prompts": "^1.2.0",
+        "citty": "^0.2.2",
         "colorette": "^2.0.20",
-        "degit": "^2.8.4"
+        "degit": "^2.8.4",
+        "semver": "^7.7.4",
+        "sqlite-cache": "^0.0.3"
     },
     "devDependencies": {
         "@types/degit": "^2.8.6",
         "@types/node": "^25.6.0",
+        "@types/semver": "^7.7.1",
         "tsup": "^8.5.1"
     }
 }

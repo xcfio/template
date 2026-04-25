@@ -43,7 +43,7 @@ npm install -g @cnpx/cnpx
 yarn global add @cnpx/cnpx
 ```
 
-> **Requires Node.js 22.5 or later.** Check your version with `node --version`.
+> **Requires Node.js 22.12 or later.** Check your version with `node --version`.
 
 Alternatively, run without installing:
 
@@ -66,7 +66,7 @@ cnpx
 Or skip straight to a known template with flags:
 
 ```bash
-cnpx --name my-app --template backend/fastify
+cnpx --name=my-app --template=backend/fastify
 ```
 
 ---
@@ -82,7 +82,7 @@ All flags are optional. Any omitted value is collected interactively.
 | `--template` | `-t`  | `string`  | Template name. Accepts bare name (`fastify`) or `category/template` slash syntax. Slash syntax also sets `--category`.                        |
 | `--force`    | `-f`  | `boolean` | Overwrite a non-empty target directory without prompting. Skips both the overwrite confirmation and the final "create project?" confirmation. |
 | `--offline`  | `-o`  | `boolean` | Run in offline mode using locally cached templates. Requires `--template` in `category/template` format.                                      |
-| `--help`     | `-h`  | `boolean` | Print the help message and exit. Also triggered by passing `help` as a bare argument.                                                         |
+| `--help`     | `-h`  | `boolean` | Print the help message and exit.                                                                                                              |
 
 ### Examples
 
@@ -91,25 +91,23 @@ All flags are optional. Any omitted value is collected interactively.
 cnpx
 
 # Name only — prompts for category and template
-cnpx --name my-project
+cnpx --name=my-project
 
 # Slash syntax — sets both category and template
-cnpx -t backend/fastify
+cnpx -t=backend/fastify
 
 # Category and template as separate flags
-cnpx --category backend --template fastify
+cnpx --category=backend --template=fastify
 
 # All flags — no prompts at all
-cnpx -n my-app -t backend/fastify -f
+cnpx -n=my-app -t=backend/fastify -f
 
 # Offline mode — uses cached templates, no network required
-cnpx --offline -n my-app -t backend/fastify
+cnpx --offline -n=my-app -t=backend/fastify
 
 # Print help
 cnpx --help
 ```
-
-> **Note:** Unknown flags are silently ignored (`strict: false` parse mode). Only the flags listed above have any effect.
 
 ---
 
@@ -212,7 +210,7 @@ At startup, cnpx fetches the latest version from the npm registry:
 GET https://registry.npmjs.org/@cnpx/cnpx/latest
 ```
 
-Versions are compared with a custom semver parser that handles pre-release identifiers correctly (numeric parts compared numerically, string parts lexicographically). If the remote version is _newer_ than the running version, a note is displayed:
+Versions are compared using the [`semver`](https://www.npmjs.com/package/semver) package. If the remote version is _newer_ than the running version, a note is displayed:
 
 ```
 ┌  Update available ───────────────╮
@@ -224,6 +222,8 @@ Versions are compared with a custom semver parser that handles pre-release ident
 ```
 
 The check is non-blocking — any error (network failure, rate limit) is silently swallowed so it never interrupts the main flow. In offline mode the update check is skipped entirely.
+
+Registry responses are cached locally for 24 hours (via [`sqlite-cache`](https://www.npmjs.com/package/sqlite-cache)) so the check adds no latency on repeated runs.
 
 ---
 
@@ -245,7 +245,7 @@ The project name is validated before any I/O happens. The following conditions c
 
 After name validation, the resolved path is checked:
 
-| Condition                        | Behaviour                                                        |
+| Condition                        | Behavior                                                         |
 | -------------------------------- | ---------------------------------------------------------------- |
 | Path does not exist              | Proceeds normally                                                |
 | Path is an empty directory       | Proceeds normally (no overwrite prompt)                          |
@@ -265,19 +265,23 @@ After name validation, the resolved path is checked:
 
 ### Runtime
 
-| Package          | Version   | Purpose                                                                            |
-| ---------------- | --------- | ---------------------------------------------------------------------------------- |
-| `@clack/prompts` | `^1.2.0`  | Beautiful interactive prompts — text, select, confirm, spinner, note, outro        |
-| `colorette`      | `^2.0.20` | Zero-dependency terminal colour helpers (`blue`, `green`, `bold`, `dim`, `yellow`) |
-| `degit`          | `^2.8.4`  | Fast git-based scaffolding without cloning full history; supports local caching    |
+| Package          | Version   | Purpose                                                                         |
+| ---------------- | --------- | ------------------------------------------------------------------------------- |
+| `@clack/prompts` | `^1.2.0`  | Beautiful interactive prompts — text, select, confirm, spinner, note, outro     |
+| `citty`          | `^0.2.2`  | CLI argument parsing and command definition                                     |
+| `colorette`      | `^2.0.20` | Zero-dependency terminal color helpers (`blue`, `green`, `bold`, `gray`)        |
+| `degit`          | `^2.8.4`  | Fast git-based scaffolding without cloning full history; supports local caching |
+| `semver`         | `^7.7.4`  | Reliable semver comparison for update checks                                    |
+| `sqlite-cache`   | `^0.0.3`  | TTL-aware persistent cache for network responses (stored in `~/.cnpx/`)         |
 
 ### Dev / Build
 
-| Package        | Version   | Purpose                                                              |
-| -------------- | --------- | -------------------------------------------------------------------- |
-| `tsup`         | `^8.5.1`  | Zero-config TypeScript bundler; outputs CJS (`.js`) and ESM (`.mjs`) |
-| `@types/degit` | `^2.8.6`  | TypeScript types for degit                                           |
-| `@types/node`  | `^25.5.2` | TypeScript types for Node.js built-in APIs                           |
+| Package         | Version   | Purpose                                                              |
+| --------------- | --------- | -------------------------------------------------------------------- |
+| `tsup`          | `^8.5.1`  | Zero-config TypeScript bundler; outputs CJS (`.js`) and ESM (`.mjs`) |
+| `@types/degit`  | `^2.8.6`  | TypeScript types for degit                                           |
+| `@types/node`   | `^25.6.0` | TypeScript types for Node.js built-in APIs                           |
+| `@types/semver` | `^7.7.1`  | TypeScript types for semver                                          |
 
 All runtime dependencies are pure-JS and work without native addons.
 
@@ -289,8 +293,9 @@ All runtime dependencies are pure-JS and work without native addons.
 
 ```
 src/
-├── bin.ts                  # Entry point — wires showHelp + main
-├── main.ts                 # Orchestrates the full interactive flow
+├── bin.ts                  # Entry point — bootstraps the CLI via citty
+├── main.ts                 # Defines and runs the main citty command
+├── cache.ts                # SQLite-backed fetch cache (TTL: 24h, stored in ~/.cnpx/)
 ├── offlineRunner.ts        # Offline mode flow (--offline flag)
 ├── clone.ts                # Wraps degit clone with a spinner
 ├── confirmProject.ts       # Extracted final confirmation prompt logic
@@ -302,8 +307,8 @@ src/
 ├── getPackageManager.ts    # pnpm / yarn / npm detection (cached)
 ├── isInvalidPath.ts        # Target path existence and type checks
 ├── isValidDirectoryName.ts # Name validation logic
-├── fetch.ts                # Thin fetch wrapper returning typed JSON
-└── showHelp.ts             # --help output
+├── fetch.ts                # Thin fetch wrapper with cache support
+└── type.ts                 # Shared TypeScript types
 ```
 
 ### npm scripts
