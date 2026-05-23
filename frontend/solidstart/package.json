@@ -11,13 +11,13 @@
     "dependencies": {
         "@solidjs/router": "^0.16.1",
         "@solidjs/start": "2.0.0-alpha.2",
-        "solid-js": "^1.9.12",
-        "vite": "^7.3.2",
+        "solid-js": "^1.9.13",
+        "vite": "^8.0.14",
         "@solidjs/vite-plugin-nitro-2": "^0.1.0"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.3.0",
-        "tailwindcss": "^4.2.4"
+        "tailwindcss": "^4.3.0"
     },
     "engines": {
         "node": ">=22"

@@ -16,19 +16,24 @@ jobs:
             - name: Setup Action
               uses: actions/checkout@v4
 
+            # Setup PNPM
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v4
+
             # Setup Node.js
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
                   node-version: "latest"
-
-            # Setup PNPM
-            - name: Setup PNPM
-              uses: pnpm/action-setup@v4
+                  cache: "pnpm"
 
             # Install dependencies
             - name: Install dependencies
               run: pnpm install --no-frozen-lockfile
+
+            # Disable Turbo Telemetry to prevent potential issues in CI environment
+            - name: Disable Turbo Telemetry
+              run: pnpm exec turbo telemetry disable > /dev/null 2>&1 && echo "Turbo Telemetry disabled"
 
             # Run test
             - name: Run test
