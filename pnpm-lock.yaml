@@ -104,8 +104,8 @@ importers:
         specifier: ^2.0.20
         version: 2.0.20
       degit:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.3.2
+        version: 3.3.2
       semver:
         specifier: ^7.8.1
         version: 7.8.1
@@ -2650,8 +2650,8 @@ packages:
   defu@6.1.7:
     resolution: {integrity: sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ==}
 
-  degit@3.0.0:
-    resolution: {integrity: sha512-NP+Mlw24xSwOwznmU3xhQV53/tzokzpAsnsxhQjvatF9nccXoUvnSj1Z4TOc0jur5+Xip92jN9vDergtUKHp8A==}
+  degit@3.3.2:
+    resolution: {integrity: sha512-rzktlX74xtTbsH64Iy2rktaCzUejyV70K3DIQ1/GtEHS+8sBaFKEzdEfnDDRy076r9gWGcxsMwOzhYnkWKq1tA==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -6485,7 +6485,7 @@ snapshots:
 
   defu@6.1.7: {}
 
-  degit@3.0.0: {}
+  degit@3.3.2: {}
 
   denque@2.1.0: {}
 
