@@ -44,7 +44,7 @@
         "node": ">=22.12"
     },
     "dependencies": {
-        "@clack/prompts": "^1.4.0",
+        "@clack/prompts": "^1.5.1",
         "citty": "^0.2.2",
         "colorette": "^2.0.20",
         "degit": "^3.4.2",
