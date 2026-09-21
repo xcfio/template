@@ -1,9 +1,0 @@
-src/
-tsup.config.ts
-tsconfig.json
-*.test.ts
-.prettierrc
-.prettierignore
-.turbo
-.gitignore
-vitest.config.ts
