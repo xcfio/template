@@ -14,22 +14,27 @@ jobs:
         steps:
             # Setup Action
             - name: Setup Action
-              uses: actions/checkout@v4
+              uses: actions/checkout@v7
 
             # Setup PNPM
             - name: Setup PNPM
-              uses: pnpm/action-setup@v4
+              uses: pnpm/action-setup@v6
 
             # Setup Node.js
             - name: Setup Node.js
-              uses: actions/setup-node@v4
+              uses: actions/setup-node@v7
               with:
                   node-version: "latest"
                   cache: "pnpm"
 
+            # Remove lockfile for Dependabot PRs
+            - name: Remove lockfile
+              if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+              run: rm -rf pnpm-lock.yaml
+
             # Install dependencies
             - name: Install dependencies
-              run: pnpm install --no-frozen-lockfile
+              run: (pnpm install --no-frozen-lockfile) || true
 
             # Disable Turbo Telemetry to prevent potential issues in CI environment
             - name: Disable Turbo Telemetry

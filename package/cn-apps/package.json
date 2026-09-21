@@ -1,0 +1,61 @@
+{
+    "name": "cn-apps",
+    "version": "0.0.0",
+    "description": "An interactive CLI tool for creating new projects.",
+    "author": "xcfio",
+    "homepage": "https://github.com/xcfio/template/tree/main/package/cn-apps#readme",
+    "type": "commonjs",
+    "license": "MIT",
+    "main": "./out/index.js",
+    "module": "./out/index.mjs",
+    "bin": {
+        "cn-apps": "./out/index.js",
+        "cn": "./out/index.js"
+    },
+    "exports": {
+        ".": {
+            "import": "./out/index.mjs",
+            "require": "./out/index.js"
+        }
+    },
+    "scripts": {
+        "lint": "prettier --config=.prettierrc --check src",
+        "fmt": "prettier --config=.prettierrc --write src",
+        "test": "tsc --noEmit",
+        "dev": "tsup --watch",
+        "build": "tsup"
+    },
+    "keywords": [
+        "cn-apps",
+        "create"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xcfio/template"
+    },
+    "bugs": {
+        "url": "https://github.com/xcfio/template/issues",
+        "email": "omarfaruksxp@gmail.com"
+    },
+    "publishConfig": {
+        "access": "public",
+        "tag": "latest"
+    },
+    "engines": {
+        "node": ">=22.12"
+    },
+    "dependencies": {
+        "@clack/prompts": "^1.8.1",
+        "citty": "^0.2.2",
+        "colorette": "^2.0.20",
+        "degit": "^3.10.0",
+        "semver": "^7.8.5",
+        "sqlite-cache": "^0.0.3"
+    },
+    "devDependencies": {
+        "@types/degit": "^2.8.6",
+        "@types/node": "^26.6.2",
+        "@types/semver": "^7.8.0",
+        "tsup": "^8.5.1"
+    }
+}

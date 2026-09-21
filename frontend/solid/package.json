@@ -1,6 +1,7 @@
 {
     "name": "solid-tailwind",
     "version": "0.0.1",
+    "license": "MIT",
     "type": "module",
     "scripts": {
         "start": "vite",
@@ -9,16 +10,15 @@
         "build": "vite build",
         "serve": "vite preview"
     },
-    "license": "MIT",
     "devDependencies": {
-        "@tailwindcss/vite": "^4.3.0",
+        "@tailwindcss/vite": "^4.3.3",
         "solid-devtools": "^0.34.5",
-        "tailwindcss": "^4.3.0",
-        "typescript": "^6.0.3",
-        "vite": "^8.0.16",
-        "vite-plugin-solid": "^2.11.12"
+        "tailwindcss": "^4.3.3",
+        "typescript": "^7.0.2",
+        "vite": "^8.3.0",
+        "vite-plugin-solid": "^2.11.14"
     },
     "dependencies": {
-        "solid-js": "^1.9.13"
+        "solid-js": "^1.9.15"
     }
 }

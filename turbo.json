@@ -1,5 +1,6 @@
 {
-    "$schema": "https://turborepo.com/schema.json",
+    "$schema": "https://turborepo.dev/schema.json",
+    "envMode": "loose",
     "ui": "tui",
     "tasks": {
         "build": {
@@ -11,6 +12,10 @@
             "dependsOn": ["^test"]
         },
         "dev": {
+            "cache": false,
+            "persistent": true
+        },
+        "start": {
             "cache": false,
             "persistent": true
         }

@@ -1,16 +1,22 @@
 {
     "name": "template",
     "description": "A collection of application templates for Fastify, Next.js, Node.js, React, and SolidJS",
-    "author": "Omar Faruk (Aka. xcfio)",
+    "author": "xcfio",
     "homepage": "https://github.com/xcfio/template#readme",
     "license": "MIT",
     "scripts": {
         "build": "turbo run build",
-        "dev": "turbo run dev",
-        "lint": "turbo run lint",
+        "clean": "node --eval \"import('node:fs/promises').then(async({readdir,rm})=>{const{join}=await import('node:path');async function walk(d){for(const e of await readdir(d,{withFileTypes:true})){if(!e.isDirectory()||e.name==='.git'||e.name==='.turbo')continue;const p=join(d,e.name);if(e.name==='node_modules'){console.log('Removing',p);await rm(p,{recursive:true,force:true})}else{await walk(p)}}}console.log('Scanning...');await walk('.');console.log('Clean done')})\"",
+        "clean:no-out": "node --eval \"import('node:fs/promises').then(async({readdir,rm})=>{const{join}=await import('node:path');const removed=[];async function walk(d){for(const e of await readdir(d,{withFileTypes:true})){if(!e.isDirectory()||e.name==='.git'||e.name==='.turbo')continue;const p=join(d,e.name);if(e.name==='node_modules'){await rm(p,{recursive:true,force:true});removed.push(p)}else{await walk(p)}}}await walk('.');console.log('Removed',removed.length,'node_modules dir(s)')})\"",
+        "dev": "turbo watch dev",
         "fmt": "prettier --config=.prettierrc --write .",
-        "test": "turbo run test",
-        "clean": "powershell -Command \"Get-ChildItem -Path . -Filter node_modules -Recurse -Directory | Remove-Item -Recurse -Force\""
+        "fmt:test": "prettier --config=.prettierrc --check .",
+        "lint": "oxlint --config=oxlint.config.mts .",
+        "lint:fix": "oxlint --config=oxlint.config.mts --fix .",
+        "preinstall": "npx only-allow pnpm",
+        "start": "turbo run start",
+        "studio": "turbo run studio",
+        "test": "turbo run test"
     },
     "repository": {
         "type": "git",
@@ -21,11 +27,19 @@
         "email": "xcfio@proton.me"
     },
     "devDependencies": {
-        "prettier": "^3.8.3",
-        "turbo": "^2.9.18",
-        "typescript": "6.0.3"
+        "@commitlint/config-conventional": "^21.2.3",
+        "@commitlint/format": "^21.2.3",
+        "@commitlint/types": "^21.2.3",
+        "commitlint": "^21.2.3",
+        "lefthook": "^2.1.14",
+        "oxlint": "^1.84.0",
+        "oxlint-plugin-eslint": "^1.84.0",
+        "oxlint-tsgolint": "^7.0.2002",
+        "prettier": "^3.9.8",
+        "turbo": "^2.11.2",
+        "typescript": "7.0.2"
     },
-    "packageManager": "pnpm@11.2.2",
+    "packageManager": "pnpm@12.5.1",
     "engines": {
         "node": ">=24"
     }

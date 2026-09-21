@@ -4,17 +4,17 @@ A collection of application templates for Fastify, Next.js, Node.js, React, and 
 
 ## Usage
 
-Scaffold a template into a new directory using [@cnpx/cnpx](cnpx/cnpx):
+Scaffold a template into a new directory using [cn-apps](package/cn-apps):
 
 ```bash
 # Interactive mode
-pnpm dlx @cnpx/cnpx
+pnpm dlx cn-apps
 ```
 
 Or skip straight to a known template with CLI flags:
 
 ```bash
-pnpm dlx @cnpx/cnpx --name my-app --template backend/fastify
+pnpm dlx cn-apps --name my-app --template backend/fastify
 ```
 
 **Available CLI Flags:**
@@ -31,16 +31,16 @@ pnpm dlx @cnpx/cnpx --name my-app --template backend/fastify
 
 ```bash
 # Fully interactive
-pnpm dlx @cnpx/cnpx
+pnpm dlx cn-apps
 
 # Name only — prompts for category and template
-pnpm dlx @cnpx/cnpx --name my-project
+pnpm dlx cn-apps --name my-project
 
 # Slash syntax — sets both category and template
-pnpm dlx @cnpx/cnpx -t backend/fastify
+pnpm dlx cn-apps -t backend/fastify
 
 # Category and template as separate flags
-pnpm dlx @cnpx/cnpx --category backend --template fastify
+pnpm dlx cn-apps --category backend --template fastify
 ```
 
 ## License
