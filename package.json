@@ -27,7 +27,7 @@
         "email": "xcfio@proton.me"
     },
     "devDependencies": {
-        "@commitlint/config-conventional": "^21.2.3",
+        "@commitlint/config-conventional": "^21.2.4",
         "@commitlint/format": "^21.2.3",
         "@commitlint/types": "^21.2.3",
         "commitlint": "^21.2.3",
