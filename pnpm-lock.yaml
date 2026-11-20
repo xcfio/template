@@ -407,8 +407,8 @@ importers:
         specifier: ^2.0.20
         version: 2.0.20
       degit:
-        specifier: ^3.10.0
-        version: 3.10.0
+        specifier: ^3.10.1
+        version: 3.10.1
       semver:
         specifier: ^7.8.5
         version: 7.8.5
@@ -417,8 +417,8 @@ importers:
         version: 0.0.3
     devDependencies:
       '@types/degit':
-        specifier: ^2.8.6
-        version: 2.8.6
+        specifier: ^3.10.0
+        version: 3.10.0
       '@types/node':
         specifier: ^26.6.2
         version: 26.6.2
@@ -2602,8 +2602,9 @@ packages:
   '@types/braces@3.0.5':
     resolution: {integrity: sha512-SQFof9H+LXeWNz8wDe7oN5zu7ket0qwMu5vZubW4GCJ8Kkeh6nBWUz87+KTz/G3Kqsrp0j/W253XJb3KMEeg3w==}
 
-  '@types/degit@2.8.6':
-    resolution: {integrity: sha512-y0M7sqzsnHB6cvAeTCBPrCQNQiZe8U4qdzf8uBVmOWYap5MMTN/gB2iEqrIqFiYcsyvP74GnGD5tgsHttielFw==}
+  '@types/degit@3.10.0':
+    resolution: {integrity: sha512-oTyz24mCIFB+GhcdZMZHNM5blZLpAlQDsFWroQknB352n+rwd1I4UQeXaTZS3RQjD48gVqUU42UZ73G5mOeHrg==}
+    deprecated: This is a stub types definition. degit provides its own type definitions, so you do not need this installed.
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -3234,8 +3235,8 @@ packages:
   defu@6.1.7:
     resolution: {integrity: sha512-7z22QmUWiQ/2d0KkdYmANbRUVABpZ9SNYyH5vx6PZ+nE5bcC0l7uFvEfHlyld/HcGBFTL536ClDt3DEcSlEJAQ==}
 
-  degit@3.10.0:
-    resolution: {integrity: sha512-xlFPgJs8X/2wnWNsuV6siWVHRd2mSGUNHYkiJLZYa918Ma9rZT/mM3Y2Rz6juwz3tHTkfNAnlX7szD9OLbcYQg==}
+  degit@3.10.1:
+    resolution: {integrity: sha512-uk/EzGpCqFG7EYggYyz2SbLovBSok+dxzuKJywJ7VV77/20k/+P4CxG2qTNLTZOQ6snLsY/0mcipP40OLL2pBg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -7089,7 +7090,9 @@ snapshots:
 
   '@types/braces@3.0.5': {}
 
-  '@types/degit@2.8.6': {}
+  '@types/degit@3.10.0':
+    dependencies:
+      degit: 3.10.1
 
   '@types/estree@1.0.9': {}
 
@@ -7595,7 +7598,7 @@ snapshots:
 
   defu@6.1.7: {}
 
-  degit@3.10.0: {}
+  degit@3.10.1: {}
 
   denque@2.1.0: {}
 
