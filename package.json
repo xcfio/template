@@ -34,7 +34,7 @@
         "lefthook": "^2.1.14",
         "oxlint": "^1.84.0",
         "oxlint-plugin-eslint": "^1.84.0",
-        "oxlint-tsgolint": "^7.0.2002",
+        "oxlint-tsgolint": "^7.0.2007",
         "prettier": "^3.9.8",
         "turbo": "^2.11.2",
         "typescript": "7.0.2"
