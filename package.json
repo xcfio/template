@@ -30,7 +30,7 @@
         "@commitlint/config-conventional": "^21.2.4",
         "@commitlint/format": "^21.2.3",
         "@commitlint/types": "^21.2.3",
-        "commitlint": "^21.2.3",
+        "commitlint": "^21.2.4",
         "lefthook": "^2.2.2",
         "oxlint": "^1.84.0",
         "oxlint-plugin-eslint": "^1.84.0",
